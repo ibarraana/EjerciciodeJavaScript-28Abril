@@ -65,16 +65,36 @@ const gestorTareas = (function() {
     }
 
     function obtenerResumenTareas() {
+
+        let listaTareas = []
+
+        for (let tarea of tareas.values()) {
+            listaTareas.push(tarea)
+        }
+
+        let tareasCompletadas = 0
+
+        for (let tarea of listaTareas) 
+            if (tarea.completada) 
+                tareasCompletadas++          
+
+        return {
+            total: tareas.size,
+            completadas: tareasCompletadas,
+            pendientes: tareas.size - tareasCompletadas
+        }
     }
     
     return {
         agregarTarea: agregarTareas,
         marcarCompletada: marcarCompletadas,
-        obtenerTareasPorEtiqueta: obtenerTareasPorEtiquetas
-    }
-    
+        obtenerTareasPorEtiqueta: obtenerTareasPorEtiquetas,
+        resumenTareas: obtenerResumenTareas
+    }    
 })();
 
+
+// Declaro las tareas y las muestro despues
 
 const tareasParaAgregar = [{
     id: 1,
@@ -86,6 +106,10 @@ const tareasParaAgregar = [{
     etiquetas: ["Etiqueta1", "Etiqueta2"]
 }]
 
+console.log("\n")
+console.log("Datos de las tareas a agregar al gestor de tareas: \n" + JSON.stringify(tareasParaAgregar)) 
+
+console.log("\n")
 
 // Primero agrego una tarea
 let agregadaTarea1 =gestorTareas.agregarTarea(tareasParaAgregar[0])
@@ -101,14 +125,23 @@ if(agregadaTarea2) {
     console.log("Tarea 2 agregada correctamente.")
 }
 
+console.log("\n")
+
 // Marco la tarea 1 como completada
 gestorTareas.marcarCompletada(1)
 
 // Marco la tarea 2 como completada
 gestorTareas.marcarCompletada(2)
 
+console.log("\n")
+
 // Obtenemos las tareas por etiqueta
 let tareasConEtiqueta1 = gestorTareas.obtenerTareasPorEtiqueta("Etiqueta1")
 console.log("Tarea por etiquetas 'Etiqueta1'" + tareasConEtiqueta1)
 
+console.log("\n")
 
+let tareasCompletadas = gestorTareas.resumenTareas()
+console.log("Resumen de tareas: " + JSON.stringify(tareasCompletadas)) // Esta funcion es para convertir un JSON a un string
+
+console.log("\n")
