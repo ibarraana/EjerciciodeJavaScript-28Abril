@@ -21,27 +21,27 @@ La función debe:
 
 function procesarListas(...listasRecibidas) {
 
-    const listaCombinada = [];
+    const listaCombinada = []
     
     for (let i = 0; i < listasRecibidas.length; i++) {
-        const listaActual = listasRecibidas[i];
+        const listaActual = listasRecibidas[i]
         
         for (let j = 0; j < listaActual.length; j++) {
-            listaCombinada.push(listaActual[j]);
+            listaCombinada.push(listaActual[j])
         }
     }
 
     let datosLista = ""
 
     for (let i = 0; i < listaCombinada.length; i++) {
-        datosLista += listaCombinada[i] + ", ";
+        datosLista += listaCombinada[i] + ", "
     }   
 
-    let totalElementosLista = listaCombinada.length;
+    let totalElementosLista = listaCombinada.length
 
-    const invitadosUnicos = new Set(listaCombinada);
+    let invitadosUnicos = new Set(listaCombinada)
 
-    let conteoUnicos = invitadosUnicos.size;
+    let conteoUnicos = invitadosUnicos.size
 
     return {
         datosLista,
@@ -51,9 +51,13 @@ function procesarListas(...listasRecibidas) {
     };
 }
 
-const listaInvitados1 = ["Ana", "Gabriela", "Carlos", "Paula"];
-const listaInvitados2 = ["Nicole", "Mariana", "Florencia", "Veronica"];
+const listaInvitados1 = ["Ana", "Gabriela", "Carlos", "Paula"]
+const listaInvitados2 = ["Nicole", "Mariana", "Florencia", "Veronica"]
 
-let resultado = procesarListas(listaInvitados1, listaInvitados2);
-console.log(resultado);
+let resultado = procesarListas(listaInvitados1, listaInvitados2)
 
+console.log("Imprimimos los datos obtenidos de la función \n")
+console.log("Datos de la lista: " + resultado["datosLista"])
+console.log("Invitados únicos: " + Array.from(resultado["invitadosUnicos"]))
+console.log("Total de invitados (con duplicados): " + resultado["totalElementosLista"])
+console.log("Total de invitados únicos: " + resultado["conteoUnicos"])

@@ -16,3 +16,33 @@ Finalmente, filtrará el array de objetos, devolviendo solo aquellos objetos don
 *   La función interna usará este `nombrePropiedad` para acceder dinámicamente a la propiedad del objeto.
 
  */
+
+
+function crearFiltroPorPropiedad(nombrePropiedad) {
+    
+    return function(valorEsperado, listaDeObjetos) {
+        const resultados = []
+
+        for (let i = 0; i < listaDeObjetos.length; i++) {
+            const objetoActual = listaDeObjetos[i]
+
+            if (objetoActual[nombrePropiedad] === valorEsperado) {
+                resultados.push(objetoActual)
+            }
+        }
+
+        return resultados
+    };
+}
+
+
+let filtrarPorCiudad = crearFiltroPorPropiedad("ciudad")
+
+let personas = [
+    { nombre: "Ana", ciudad: "Madrid" },
+    { nombre: "Luis", ciudad: "Barcelona" }
+]
+// residentesMadrid debería ser [{nombre: "Ana", ciudad: "Madrid"}]`
+
+let residentesMadrid = filtrarPorCiudad("Madrid", personas)
+console.log(residentesMadrid)
