@@ -23,3 +23,58 @@ Crea una función `transformarYAgruparUsuarios(usuariosApi, ...propiedadesAdicio
 *   Usa `Map` y `Set` para la agrupación.
 
  */
+
+function transformarYAgruparUsuarios(usuariosApi, ...propiedadesAdicionales) {
+    const usuariosTransformados = [];
+    const usuariosPorPais = new Map();
+
+    for (let i = 0; i < usuariosApi.length; i++) {
+        const usuarioOriginal = usuariosApi[i];
+
+        const { id, nombre_completo, email, detalles } = usuarioOriginal;
+
+        const partesDelNombre = nombre_completo.split(" ");
+        const primerNombre = partesDelNombre[0];
+
+        const nuevoUsuario = {
+            userId: id,
+            nombre: primerNombre,
+            email: email
+        };
+
+        for (let j = 0; j < propiedadesAdicionales.length; j++) {
+            const prop = propiedadesAdicionales[j];
+            
+            if (detalles[prop] !== undefined) {
+                nuevoUsuario[prop] = detalles[prop];
+            }
+        }
+
+        usuariosTransformados.push(nuevoUsuario);
+
+        if (propiedadesAdicionales.includes("pais_residencia") && detalles.pais_residencia) {
+            const pais = detalles.pais_residencia;
+
+            if (!usuariosPorPais.has(pais)) {
+                usuariosPorPais.set(pais, new Set());
+            }
+
+            usuariosPorPais.get(pais).add(id);
+        }
+    }
+
+    return {
+        usuariosTransformados,
+        usuariosPorPais
+    };
+}
+
+
+const datosApi = [
+    { id: 1, nombre_completo: "Ana Ibarra", email: "anaibarra@gmail.com", detalles: { edad: 30, pais_residencia: "ES" } },
+    { id: 2, nombre_completo: "Juan Ibarra", email: "juanibarra@gmail.com", detalles: { edad: 25, pais_residencia: "MX" } },
+    { id: 3, nombre_completo: "Lore Ibarra", email: "loreibarra@gmail.com", detalles: { edad: 40, pais_residencia: "AR" } }
+];
+
+const resultado = transformarYAgruparUsuarios(datosApi, "edad", "pais_residencia");
+console.log(resultado);
