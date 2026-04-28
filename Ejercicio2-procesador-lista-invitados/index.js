@@ -43,19 +43,17 @@ function procesarListas(...listasRecibidas) {
 
     let conteoUnicos = invitadosUnicos.size;
 
-    // 5. Devolver el objeto final
     return {
-        datosLista: datosLista,
-        invitadosUnicos: invitadosUnicos,
-        totalElementosLista: totalElementosLista,
-        conteoInvitadosUnicos: conteoUnicos
+        datosLista,
+        invitadosUnicos,
+        totalElementosLista,
+        conteoUnicos
     };
 }
 
-// --- Prueba ---
 const listaInvitados1 = ["Ana", "Gabriela", "Carlos", "Paula"];
 const listaInvitados2 = ["Nicole", "Mariana", "Florencia", "Veronica"];
 
-const resultado = procesarListas(listaInvitados1, listaInvitados2);
+let resultado = procesarListas(listaInvitados1, listaInvitados2);
 console.log(resultado);
 
