@@ -21,7 +21,7 @@ Implementa las siguientes funciones:
 
 
 const gestorTareas = (function() {
-    const tareas = new Map()
+    let tareas = new Map()
 
     function agregarTareas({ id, descripcion, etiquetas = [] }) {
 
@@ -112,14 +112,14 @@ console.log("Datos de las tareas a agregar al gestor de tareas: \n" + JSON.strin
 console.log("\n")
 
 // Primero agrego una tarea
-let agregadaTarea1 =gestorTareas.agregarTareas(tareasParaAgregar[0])
+let agregadaTarea1 = gestorTareas.agregarTareas(tareasParaAgregar[0])
 
 if(agregadaTarea1) {
     console.log("Tarea 1 agregada correctamente.")
 }
 
 // Luego agrego otra tarea
-let agregadaTarea2 =gestorTareas.agregarTareas(tareasParaAgregar[1])
+let agregadaTarea2 = gestorTareas.agregarTareas(tareasParaAgregar[1])
 
 if(agregadaTarea2) {
     console.log("Tarea 2 agregada correctamente.")

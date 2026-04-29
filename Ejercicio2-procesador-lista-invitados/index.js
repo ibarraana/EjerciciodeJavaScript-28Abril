@@ -51,8 +51,8 @@ function procesarListas(...listasRecibidas) {
     };
 }
 
-const listaInvitados1 = ["Ana", "Gabriela", "Carlos", "Paula"]
-const listaInvitados2 = ["Nicole", "Mariana", "Florencia", "Veronica"]
+let listaInvitados1 = ["Ana", "Gabriela", "Carlos", "Paula"]
+let listaInvitados2 = ["Nicole", "Mariana", "Florencia", "Veronica"]
 
 let resultado = procesarListas(listaInvitados1, listaInvitados2)
 
